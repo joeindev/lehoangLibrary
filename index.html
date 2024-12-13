@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xác Minh</title>
+    <title>Trang Xác Minh</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="login-container">
+    <div class="container">
         <h1>Trang Xác Minh</h1>
-        <form id="login-form">
-            <label for="name">Tên:</label>
+        <form id="verifyForm">
+            <label for="name">Nhập Tên:</label>
             <input type="text" id="name" required>
-            <label for="dob">Ngày sinh (dd/mm/yyyy):</label>
+
+            <label for="class">Lớp:</label>
+            <input type="text" id="class" required>
+
+            <label for="dob">Ngày Sinh (dd/mm/yyyy):</label>
             <input type="text" id="dob" required>
-            <button type="submit">Đăng nhập</button>
+
+            <button type="submit">Xác Minh</button>
         </form>
         <div id="notification"></div>
     </div>

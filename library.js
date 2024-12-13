@@ -1,8 +1,2 @@
-window.onload = function () {
-    const user = localStorage.getItem('user');
-    if (user) {
-        alert(`Chào mừng, ${user}, đến với thư viện của Hoàng!`);
-    } else {
-        window.location.href = 'index.html';
-    }
-};
+// Add any JavaScript for the library page here
+document.getElementById('notification').textContent = 'Chào mừng đến thư viện!';
