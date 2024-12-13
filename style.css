@@ -1,56 +1,102 @@
+/* Định dạng chung */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to right, #4c4cff, #8a2be2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: white;
-}
-.container {
-    width: 90%;
-    max-width: 400px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
     text-align: center;
-    color: #333;
+    padding: 20px;
 }
+
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 input {
-    width: calc(100% - 20px);
-    margin: 10px;
+    margin: 10px 0;
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
     border-radius: 5px;
+    border: 1px solid #ccc;
 }
+
 button {
-    width: calc(100% - 20px);
-    margin: 10px;
     padding: 10px;
-    font-size: 16px;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
     border: none;
     border-radius: 5px;
-    background: #6a0dad;
-    color: white;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
+
 button:hover {
-    transform: scale(1.1);
-    background: #4c4cff;
+    background-color: #45a049;
 }
-a {
-    color: #4c4cff;
-    text-decoration: none;
-    transition: color 0.3s ease;
+
+/* Thông báo trạng thái đăng nhập */
+.status {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ff0000; /* Màu đỏ cho thông báo lỗi */
 }
-a:hover {
-    color: #6a0dad;
+
+.success {
+    color: #28a745; /* Màu xanh cho thông báo thành công */
 }
-.hidden {
+
+.welcome-message {
     display: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6347;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Pháo hoa */
+.fireworks {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    z-index: 5;
+}
+
+.firework {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    animation: fireworks 3s ease-in-out infinite;
+}
+
+#firework1 {
+    top: 10%;
+    left: 10%;
+}
+
+#firework2 {
+    top: 10%;
+    left: 50%;
+}
+
+@keyframes fireworks {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-100px) scale(1.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(0) scale(1);
+    }
 }
