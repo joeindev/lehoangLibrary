@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác Minh Người Dùng</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Trang Xác Minh -->
+    <div id="authPage" class="container">
+        <h2>Xác Minh Người Dùng</h2>
+        <input id="nameInput" type="text" placeholder="Nhập tên của bạn">
+        <input id="classInput" type="text" placeholder="Nhập lớp (VD: 9a, 9b)">
+        <button onclick="authenticate()">Đăng Nhập</button>
+        <p id="error" style="color: red; display: none;">Thông tin không hợp lệ!</p>
+    </div>
+
+    <!-- Trang Sảnh Thư Viện -->
+    <div id="libraryPage" class="container hidden">
+        <h2>Thông Tin Thư Viện</h2>
+        <p><b>Họ và tên:</b> lê huy hoàng</p>
+        <p><b>Ngày sinh:</b> 01/05/2010</p>
+        <p><b>Sở thích:</b> em</p>
+        <p><b>Món ăn ưa thích:</b> em</p>
+        <p><b>Ước muốn:</b> em</p>
+        <p><b>Facebook:</b> <a href="https://www.facebook.com/profile.php?id=61553628077773" target="_blank">Link Facebook</a></p>
+        <p><b>TikTok:</b> <a href="https://www.tiktok.com/@tunglathangngu" target="_blank">Link TikTok</a></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
