@@ -3,33 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Thư Viện</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Xác Minh</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Form đăng nhập -->
     <div class="login-container">
-        <h2>Đăng Nhập</h2>
-        <form id="loginForm">
-            <label for="username">Tên đăng nhập:</label>
-            <input type="text" id="username" required>
-            <label for="password">Mật khẩu:</label>
-            <input type="password" id="password" required>
-            <button type="submit">Đăng Nhập</button>
+        <h1>Trang Xác Minh</h1>
+        <form id="login-form">
+            <label for="name">Tên:</label>
+            <input type="text" id="name" required>
+            <label for="dob">Ngày sinh (dd/mm/yyyy):</label>
+            <input type="text" id="dob" required>
+            <button type="submit">Đăng nhập</button>
         </form>
-        <div id="loginStatus" class="status"></div>
+        <div id="notification"></div>
     </div>
-
-    <div id="welcomeMessage" class="welcome-message">
-        <p>Chào mừng đấng!</p>
-    </div>
-
-    <div class="fireworks" id="fireworks">
-        <!-- GIF pháo hoa -->
-        <img src="fireworks.gif" class="firework" id="firework1">
-        <img src="fireworks.gif" class="firework" id="firework2">
-    </div>
-
-    <script src="script.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>

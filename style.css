@@ -1,102 +1,24 @@
-/* Định dạng chung */
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 20px;
 }
 
-.login-container {
-    max-width: 400px;
+.container {
+    max-width: 1200px;
     margin: 0 auto;
-    background-color: #f4f4f4;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-input {
-    margin: 10px 0;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+h1 {
+    text-align: center;
 }
 
 button {
-    padding: 10px;
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #45a049;
-}
-
-/* Thông báo trạng thái đăng nhập */
-.status {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #ff0000; /* Màu đỏ cho thông báo lỗi */
-}
-
-.success {
-    color: #28a745; /* Màu xanh cho thông báo thành công */
-}
-
-.welcome-message {
-    display: none;
-    font-size: 24px;
-    font-weight: bold;
-    color: #ff6347;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-}
-
-/* Pháo hoa */
-.fireworks {
-    display: none;
-    position: fixed;
-    top: 20%;
-    left: 30%;
-    z-index: 5;
-}
-
-.firework {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    animation: fireworks 3s ease-in-out infinite;
-}
-
-#firework1 {
-    top: 10%;
-    left: 10%;
-}
-
-#firework2 {
-    top: 10%;
-    left: 50%;
-}
-
-@keyframes fireworks {
-    0% {
-        opacity: 0;
-        transform: translateY(0) scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(-100px) scale(1.5);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(0) scale(1);
-    }
+.socials a {
+    display: block;
+    margin: 10px 0;
 }
