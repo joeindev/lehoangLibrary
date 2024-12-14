@@ -65,11 +65,48 @@ function postDiscussion() {
         alert('Hãy nhập bình luận trước khi đăng!');
         return;
     }
+
+    // Tạo phần tử bình luận mới
     const list = document.getElementById('discussionList');
     const listItem = document.createElement('li');
-    listItem.textContent = text;
+    
+    // Thêm thông tin người bình luận (giả sử là người dùng hiện tại)
+    const userName = "Người dùng";  // Thay bằng tên người dùng thực tế
+    const userAvatar = "avatar.jpg";  // Thay bằng hình ảnh avatar của người dùng thực tế
+
+    listItem.innerHTML = `
+        <div class="comment">
+            <img src="${userAvatar}" alt="${userName}" class="avatar">
+            <strong>${userName}</strong>
+            <p>${text}</p>
+        </div>
+        <div class="comment-actions">
+            <button onclick="likeComment(this)">Thích</button>
+            <button onclick="replyToComment(this)">Trả lời</button>
+        </div>
+    `;
+    
     list.appendChild(listItem);
     document.getElementById('discussionText').value = '';
+}
+
+// Hàm thích bình luận
+function likeComment(button) {
+    const likeCount = button.textContent === 'Thích' ? 1 : -1;
+    button.textContent = button.textContent === 'Thích' ? 'Bỏ thích' : 'Thích';
+    alert(`Bạn đã ${likeCount === 1 ? 'thích' : 'bỏ thích'} bình luận!`);
+}
+
+// Hàm trả lời bình luận
+function replyToComment(button) {
+    const comment = button.closest('.comment');
+    const replyText = prompt("Nhập câu trả lời của bạn:");
+    if (replyText) {
+        const reply = document.createElement('div');
+        reply.classList.add('reply');
+        reply.innerHTML = `<strong>Trả lời:</strong> ${replyText}`;
+        comment.appendChild(reply);
+    }
 }
 
 // Alert khi người dùng click vào Telegram

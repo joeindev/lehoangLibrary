@@ -5,8 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Đăng Nhập</title>
     <link rel="stylesheet" href="styles.css"> <!-- Liên kết tới file CSS -->
+    <style>
+        /* Hiệu ứng tuyết rơi */
+        .snow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .snow .flake {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: snow-fall 10s linear infinite;
+        }
+
+        @keyframes snow-fall {
+            0% {
+                transform: translateY(-100px);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="snow" id="snow"></div>
+
     <div class="login-container">
         <h2>Đăng Nhập</h2>
         <form id="loginForm">

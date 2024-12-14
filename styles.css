@@ -10,6 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* Để ngăn chặn cuộn trang khi có hiệu ứng tuyết rơi */
 }
 
 /* Phần tử container đăng nhập */
@@ -21,6 +22,8 @@ body {
     max-width: 400px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
+    position: relative; /* Để các phần tử trên có thể đè lên */
+    z-index: 2; /* Đảm bảo đăng nhập nằm trên tuyết */
 }
 
 /* Tiêu đề đăng nhập */

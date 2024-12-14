@@ -58,6 +58,8 @@
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
+
+        /* Kim đồng hồ */
         .clock .hour, .clock .minute, .clock .second {
             position: absolute;
             background-color: #333;
@@ -69,18 +71,17 @@
         }
         .clock .hour {
             width: 8px;
-            height: 100px;
+            height: 80px;
             background-color: #333;
-            transform-origin: 100%;
         }
         .clock .minute {
             width: 4px;
-            height: 140px;
+            height: 120px;
             background-color: #555;
         }
         .clock .second {
             width: 2px;
-            height: 160px;
+            height: 140px;
             background-color: red;
         }
         .clock .center {
@@ -93,6 +94,38 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
+        .clock .numbers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        .clock .numbers span {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            transform-origin: 50% 50%;
+        }
+        .clock .numbers .num1 { transform: rotate(0deg) translate(140px) rotate(0deg); }
+        .clock .numbers .num2 { transform: rotate(30deg) translate(140px) rotate(-30deg); }
+        .clock .numbers .num3 { transform: rotate(60deg) translate(140px) rotate(-60deg); }
+        .clock .numbers .num4 { transform: rotate(90deg) translate(140px) rotate(-90deg); }
+        .clock .numbers .num5 { transform: rotate(120deg) translate(140px) rotate(-120deg); }
+        .clock .numbers .num6 { transform: rotate(150deg) translate(140px) rotate(-150deg); }
+        .clock .numbers .num7 { transform: rotate(180deg) translate(140px) rotate(-180deg); }
+        .clock .numbers .num8 { transform: rotate(210deg) translate(140px) rotate(-210deg); }
+        .clock .numbers .num9 { transform: rotate(240deg) translate(140px) rotate(-240deg); }
+        .clock .numbers .num10 { transform: rotate(270deg) translate(140px) rotate(-270deg); }
+        .clock .numbers .num11 { transform: rotate(300deg) translate(140px) rotate(-300deg); }
+        .clock .numbers .num12 { transform: rotate(330deg) translate(140px) rotate(-330deg); }
 
         /* Danh mục */
         .menu {
@@ -114,6 +147,54 @@
         .content {
             margin: 20px;
         }
+
+        .discussion-list {
+            text-align: left;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .discussion-item {
+            background: #f4f4f4;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .discussion-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .discussion-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .discussion-text {
+            margin-top: 5px;
+        }
+
+        .discussion-footer {
+            margin-top: 10px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .reaction-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .reaction-btn:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -133,6 +214,20 @@
             <div class="minute"></div>
             <div class="second"></div>
             <div class="center"></div>
+            <div class="numbers">
+                <span class="num1">12</span>
+                <span class="num2">1</span>
+                <span class="num3">2</span>
+                <span class="num4">3</span>
+                <span class="num5">4</span>
+                <span class="num6">5</span>
+                <span class="num7">6</span>
+                <span class="num8">7</span>
+                <span class="num9">8</span>
+                <span class="num10">9</span>
+                <span class="num11">10</span>
+                <span class="num12">11</span>
+            </div>
         </div>
     </div>
 
@@ -159,8 +254,9 @@
         <div id="discussion" class="discussion">
             <h2>Diễn Đàn Thảo Luận</h2>
             <textarea id="discussionText" rows="5" placeholder="Đăng bình luận tại đây..." style="width: 100%;"></textarea>
+            <input type="file" id="discussionImage" />
             <button class="reaction-btn" onclick="postDiscussion()">Đăng</button>
-            <ul id="discussionList" style="text-align: left; list-style-type: none; padding: 0;"></ul>
+            <ul id="discussionList" class="discussion-list"></ul>
         </div>
 
         <!-- Liên Hệ -->
@@ -184,15 +280,41 @@
 
         function postDiscussion() {
             const text = document.getElementById('discussionText').value.trim();
-            if (text === '') {
-                alert('Hãy nhập bình luận trước khi đăng!');
+            const image = document.getElementById('discussionImage').files[0];
+
+            if (text === '' && !image) {
+                alert('Hãy nhập bình luận hoặc chọn ảnh để đăng!');
                 return;
             }
+
             const list = document.getElementById('discussionList');
             const listItem = document.createElement('li');
-            listItem.textContent = text;
+            const userName = localStorage.getItem("username");
+            const status = localStorage.getItem("status");
+            const avatar = 'user-avatar.png'; // Placeholder for user's avatar
+
+            listItem.classList.add('discussion-item');
+            listItem.innerHTML = `
+                <div class="discussion-header">
+                    <img src="${avatar}" alt="${userName}" class="discussion-avatar">
+                    <span class="username">${userName}</span>
+                    <span class="status">${status}</span>
+                </div>
+                <div class="discussion-text">
+                    <p>${text}</p>
+                    ${image ? `<img src="${URL.createObjectURL(image)}" class="discussion-image" />` : ''}
+                </div>
+                <div class="discussion-footer">
+                    <button class="reaction-btn" onclick="likeComment()">Thích</button>
+                </div>
+            `;
             list.appendChild(listItem);
             document.getElementById('discussionText').value = '';
+            document.getElementById('discussionImage').value = '';
+        }
+
+        function likeComment() {
+            alert('Bạn đã thích bình luận này!');
         }
 
         function telegramAlert() {
@@ -202,31 +324,21 @@
         // Cập nhật đồng hồ mỗi giây
         function updateClock() {
             const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
 
-            // Lấy giờ theo múi giờ GMT+7 (Hà Nội)
-            const options = { timeZone: "Asia/Ho_Chi_Minh" };
-            const localTime = new Date(now.toLocaleString('en-US', options));
+            const hourDeg = (hours % 12) * 30 + (minutes / 60) * 30;
+            const minuteDeg = minutes * 6 + (seconds / 60) * 6;
+            const secondDeg = seconds * 6;
 
-            const hours = localTime.getHours();
-            const minutes = localTime.getMinutes();
-            const seconds = localTime.getSeconds();
-
-            // Tính toán góc cho từng kim
-            const hourDegree = (hours % 12) * 30 + (minutes / 60) * 30;  // Mỗi giờ = 30 độ
-            const minuteDegree = minutes * 6;  // Mỗi phút = 6 độ
-            const secondDegree = seconds * 6;  // Mỗi giây = 6 độ
-
-            // Cập nhật vị trí kim đồng hồ
-            document.querySelector('.hour').style.transform = `translateX(-50%) translateY(-50%) rotate(${hourDegree}deg)`;
-            document.querySelector('.minute').style.transform = `translateX(-50%) translateY(-50%) rotate(${minuteDegree}deg)`;
-            document.querySelector('.second').style.transform = `translateX(-50%) translateY(-50%) rotate(${secondDegree}deg)`;
+            document.querySelector('.clock .hour').style.transform = `rotate(${hourDeg}deg)`;
+            document.querySelector('.clock .minute').style.transform = `rotate(${minuteDeg}deg)`;
+            document.querySelector('.clock .second').style.transform = `rotate(${secondDeg}deg)`;
         }
 
-        // Cập nhật đồng hồ mỗi giây
         setInterval(updateClock, 1000);
-
-        // Chạy đồng hồ khi trang web tải
-        updateClock();
+        updateClock(); // Initial update
     </script>
 </body>
 </html>

@@ -30,3 +30,19 @@ function validateLogin() {
 
 // Xử lý sự kiện khi người dùng nhấn nút đăng nhập
 document.getElementById('login-button').addEventListener('click', validateLogin);
+
+// Tạo hiệu ứng tuyết rơi
+function createSnowflakes() {
+    const snowContainer = document.getElementById('snow');
+    for (let i = 0; i < 100; i++) {
+        const flake = document.createElement('div');
+        flake.classList.add('flake');
+        flake.style.width = `${Math.random() * 5 + 5}px`; // Kích thước ngẫu nhiên
+        flake.style.height = flake.style.width; // Đảm bảo tuyết có hình tròn
+        flake.style.left = `${Math.random() * 100}%`;
+        flake.style.animationDuration = `${Math.random() * 3 + 7}s`; // Thời gian rơi ngẫu nhiên
+        snowContainer.appendChild(flake);
+    }
+}
+
+createSnowflakes(); // Tạo tuyết rơi khi tải trang
