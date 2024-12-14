@@ -3,18 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thư Viện</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Thư Viện Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6e6fa;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Breadcrumb Style */
+        .breadcrumb {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .breadcrumb a {
+            text-decoration: none;
+            color: #007bff;
+            margin-right: 5px;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .breadcrumb span {
+            color: #555;
+        }
+
+        .clock-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .clock {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border: 10px solid #333;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .clock .hour, .clock .minute, .clock .second {
+            position: absolute;
+            background-color: #333;
+            top: 50%;
+            left: 50%;
+            transform-origin: 100%;
+            transform: translateX(-50%) translateY(-50%);
+            transition: all 0.05s ease;
+        }
+        .clock .hour {
+            width: 8px;
+            height: 100px;
+            background-color: #333;
+            transform-origin: 100%;
+        }
+        .clock .minute {
+            width: 4px;
+            height: 140px;
+            background-color: #555;
+        }
+        .clock .second {
+            width: 2px;
+            height: 160px;
+            background-color: red;
+        }
+        .clock .center {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #333;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Danh mục */
+        .menu {
+            margin: 20px 0;
+        }
+        .menu a {
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .menu a:hover {
+            background-color: #0056b3;
+        }
+
+        .content {
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Thư Viện</h1>
-        <div>
-            <a href="discussions.html">Thảo Luận</a>
-            <a href="contact.html">Liên Hệ</a>
-        </div>
-        <div id="notification"></div>
+    <div class="header">
+        <h1>Thư Viện Page</h1>
     </div>
-    <script src="library.js"></script>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="#">Trang Chủ</a> > <a href="#">Thư Viện</a> > <span>Danh Sách Sách</span>
+    </div>
+
+    <!-- Đồng hồ -->
+    <div class="clock-container">
+        <div class="clock">
+            <div class="hour"></div>
+            <div class="minute"></div>
+            <div class="second"></div>
+            <div class="center"></div>
+        </div>
+    </div>
+
+    <!-- Menu -->
+    <div class="menu">
+        <a href="#" onclick="showSection('owner')">Chủ Sở Hữu Trang Web</a>
+        <a href="#" onclick="showSection('discussion')">Thảo Luận</a>
+        <a href="#" onclick="showSection('contact')">Liên Hệ</a>
+    </div>
+
+    <div class="content">
+        <!-- Chủ Sở Hữu -->
+        <div id="owner" class="owner-card">
+            <h2>Thông Tin Chủ Sở Hữu</h2>
+            <p><strong>Họ và Tên:</strong> Lê Huy Hoàng</p>
+            <p><strong>Ngày Sinh:</strong> 01/05/2010</p>
+            <div>
+                <button class="reaction-btn" onclick="alert('Cảm ơn! Anh này đẹp trai thật.')">Có</button>
+                <button class="reaction-btn" onclick="alert('Thật không? Hãy suy nghĩ lại nhé!')">Không</button>
+            </div>
+        </div>
+
+        <!-- Thảo Luận -->
+        <div id="discussion" class="discussion">
+            <h2>Diễn Đàn Thảo Luận</h2>
+            <textarea id="discussionText" rows="5" placeholder="Đăng bình luận tại đây..." style="width: 100%;"></textarea>
+            <button class="reaction-btn" onclick="postDiscussion()">Đăng</button>
+            <ul id="discussionList" style="text-align: left; list-style-type: none; padding: 0;"></ul>
+        </div>
+
+        <!-- Liên Hệ -->
+        <div id="contact" class="contact">
+            <h2>Liên Hệ</h2>
+            <p><strong>Facebook:</strong> <a href="#" target="_blank">Facebook</a></p>
+            <p><strong>Discord:</strong> <a href="#" target="_blank">Discord</a></p>
+            <p><strong>Github:</strong> <a href="#" target="_blank">Github</a></p>
+            <p><strong>Tiktok:</strong> <a href="#" target="_blank">Tiktok</a></p>
+            <p><strong>Telegram:</strong> <a href="#" onclick="telegramAlert()">Telegram</a></p>
+        </div>
+    </div>
+
+    <script>
+        function showSection(section) {
+            const sections = document.querySelectorAll('.owner-card, .discussion, .contact');
+            sections.forEach(sec => sec.style.display = 'none');
+
+            document.getElementById(section).style.display = 'block';
+        }
+
+        function postDiscussion() {
+            const text = document.getElementById('discussionText').value.trim();
+            if (text === '') {
+                alert('Hãy nhập bình luận trước khi đăng!');
+                return;
+            }
+            const list = document.getElementById('discussionList');
+            const listItem = document.createElement('li');
+            listItem.textContent = text;
+            list.appendChild(listItem);
+            document.getElementById('discussionText').value = '';
+        }
+
+        function telegramAlert() {
+            alert('Rất tiếc tôi không dùng mạng xã hội dành cho sỉu nhi :)))');
+        }
+
+        // Cập nhật đồng hồ mỗi giây
+        function updateClock() {
+            const now = new Date();
+
+            // Lấy giờ theo múi giờ GMT+7 (Hà Nội)
+            const options = { timeZone: "Asia/Ho_Chi_Minh" };
+            const localTime = new Date(now.toLocaleString('en-US', options));
+
+            const hours = localTime.getHours();
+            const minutes = localTime.getMinutes();
+            const seconds = localTime.getSeconds();
+
+            // Tính toán góc cho từng kim
+            const hourDegree = (hours % 12) * 30 + (minutes / 60) * 30;  // Mỗi giờ = 30 độ
+            const minuteDegree = minutes * 6;  // Mỗi phút = 6 độ
+            const secondDegree = seconds * 6;  // Mỗi giây = 6 độ
+
+            // Cập nhật vị trí kim đồng hồ
+            document.querySelector('.hour').style.transform = `translateX(-50%) translateY(-50%) rotate(${hourDegree}deg)`;
+            document.querySelector('.minute').style.transform = `translateX(-50%) translateY(-50%) rotate(${minuteDegree}deg)`;
+            document.querySelector('.second').style.transform = `translateX(-50%) translateY(-50%) rotate(${secondDegree}deg)`;
+        }
+
+        // Cập nhật đồng hồ mỗi giây
+        setInterval(updateClock, 1000);
+
+        // Chạy đồng hồ khi trang web tải
+        updateClock();
+    </script>
 </body>
 </html>

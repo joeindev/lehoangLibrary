@@ -3,26 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Xác Minh</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Thư Viện Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6e6fa;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .menu {
+            margin: 20px 0;
+        }
+        .menu a {
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .menu a:hover {
+            background-color: #0056b3;
+        }
+        .content {
+            margin: 20px;
+        }
+        .owner-card, .discussion, .contact {
+            display: none;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .owner-card h2, .discussion h2, .contact h2 {
+            text-align: center;
+            color: #333;
+        }
+        .reaction-btn {
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .reaction-btn:hover {
+            background-color: #e67e22;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Trang Xác Minh</h1>
-        <form id="verifyForm">
-            <label for="name">Nhập Tên:</label>
-            <input type="text" id="name" required>
-
-            <label for="class">Lớp:</label>
-            <input type="text" id="class" required>
-
-            <label for="dob">Ngày Sinh (dd/mm/yyyy):</label>
-            <input type="text" id="dob" required>
-
-            <button type="submit">Xác Minh</button>
-        </form>
-        <div id="notification"></div>
+    <div class="header">
+        <h1>Thư Viện Page</h1>
     </div>
-    <script src="login.js"></script>
+    <div class="menu">
+        <a href="#" onclick="showSection('owner')">Chủ Sở Hữu Trang Web</a>
+        <a href="#" onclick="showSection('discussion')">Thảo Luận</a>
+        <a href="#" onclick="showSection('contact')">Liên Hệ</a>
+    </div>
+    <div class="content">
+        <!-- Chủ Sở Hữu -->
+        <div id="owner" class="owner-card">
+            <h2>Thông Tin Chủ Sở Hữu</h2>
+            <p><strong>Họ và Tên:</strong> Lê Huy Hoàng</p>
+            <p><strong>Ngày Sinh:</strong> 01/05/2010</p>
+            <div>
+                <button class="reaction-btn" onclick="alert('Cảm ơn! Anh này đẹp trai thật.')">Có</button>
+                <button class="reaction-btn" onclick="alert('Thật không? Hãy suy nghĩ lại nhé!')">Không</button>
+            </div>
+        </div>
+
+        <!-- Thảo Luận -->
+        <div id="discussion" class="discussion">
+            <h2>Diễn Đàn Thảo Luận</h2>
+            <textarea id="discussionText" rows="5" placeholder="Đăng bình luận tại đây..." style="width: 100%;"></textarea>
+            <button class="reaction-btn" onclick="postDiscussion()">Đăng</button>
+            <ul id="discussionList" style="text-align: left; list-style-type: none; padding: 0;"></ul>
+        </div>
+
+        <!-- Liên Hệ -->
+        <div id="contact" class="contact">
+            <h2>Liên Hệ</h2>
+            <p><strong>Facebook:</strong> <a href="#" target="_blank">Facebook</a></p>
+            <p><strong>Discord:</strong> <a href="#" target="_blank">Discord</a></p>
+            <p><strong>Github:</strong> <a href="#" target="_blank">Github</a></p>
+            <p><strong>Tiktok:</strong> <a href="#" target="_blank">Tiktok</a></p>
+            <p><strong>Telegram:</strong> <a href="#" onclick="telegramAlert()">Telegram</a></p>
+        </div>
+    </div>
+
+    <script>
+        function showSection(section) {
+            const sections = document.querySelectorAll('.owner-card, .discussion, .contact');
+            sections.forEach(sec => sec.style.display = 'none');
+
+            document.getElementById(section).style.display = 'block';
+        }
+
+        function postDiscussion() {
+            const text = document.getElementById('discussionText').value.trim();
+            if (text === '') {
+                alert('Hãy nhập bình luận trước khi đăng!');
+                return;
+            }
+            const list = document.getElementById('discussionList');
+            const listItem = document.createElement('li');
+            listItem.textContent = text;
+            list.appendChild(listItem);
+            document.getElementById('discussionText').value = '';
+        }
+
+        function telegramAlert() {
+            alert('Rất tiếc tôi không dùng mạng xã hội dành cho sỉu nhi :)))');
+        }
+    </script>
 </body>
 </html>
