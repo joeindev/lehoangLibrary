@@ -1,26 +1,32 @@
-// Hiển thị các section
-function showSection(section) {
-    const sections = document.querySelectorAll('.owner-card, .discussion, .contact');
-    sections.forEach(sec => sec.style.display = 'none');
+// Mảng chứa các tên người dùng hợp lệ
+const validUsers = [
+    "Phạm Bùi Ngọc Hân", "Hà Thị Hiền Trang", "Hoàng Ngọc Đức Mạnh",
+    "Nguyễn Thiện Vỹ", "Tạ Tùng Lâm", "Lê Thị Yến Vy", "Nguyễn Hoàng Nam",
+    "Đặng Huy Hoàng", "Nguyễn Huy Hoàng", "Trịnh Phương Anh", "Phạm Kỳ Anh",
+    "Đỗ Danh Chiến", "Đỗ Hồng Quân", "Doãn Lê Anh Tuấn", "Lê Thị Thùy Dương", "Nguyễn Quốc Việt"
+];
 
-    document.getElementById(section).style.display = 'block';
-}
+// Hàm kiểm tra thông tin đăng nhập
+function validateLogin() {
+    // Lấy giá trị từ các trường nhập liệu
+    const username = document.getElementById('username').value.trim();
+    const className = document.getElementById('className').value.trim();
 
-// Đăng bình luận
-function postDiscussion() {
-    const text = document.getElementById('discussionText').value.trim();
-    if (text === '') {
-        alert('Hãy nhập bình luận trước khi đăng!');
+    // Kiểm tra nếu tên người dùng và lớp không trống
+    if (!username || !className) {
+        document.getElementById('error-message').textContent = "Vui lòng điền đầy đủ thông tin!";
         return;
     }
-    const list = document.getElementById('discussionList');
-    const listItem = document.createElement('li');
-    listItem.textContent = text;
-    list.appendChild(listItem);
-    document.getElementById('discussionText').value = '';
+
+    // Kiểm tra xem người dùng có hợp lệ không
+    if (validUsers.includes(username) && className === "9A") {
+        // Nếu hợp lệ, chuyển hướng đến trang library.html
+        window.location.href = "library.html";
+    } else {
+        // Nếu không hợp lệ, hiển thị thông báo lỗi
+        document.getElementById('error-message').textContent = "Tên người dùng hoặc lớp không hợp lệ!";
+    }
 }
 
-// Cảnh báo Telegram
-function telegramAlert() {
-    alert('Rất tiếc tôi không dùng mạng xã hội dành cho sỉu nhi :)))');
-}
+// Xử lý sự kiện khi người dùng nhấn nút đăng nhập
+document.getElementById('login-button').addEventListener('click', validateLogin);

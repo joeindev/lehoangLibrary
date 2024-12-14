@@ -3,136 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thư Viện Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #e6e6fa;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        .header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 0;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        .menu {
-            margin: 20px 0;
-        }
-        .menu a {
-            text-decoration: none;
-            margin: 0 10px;
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .menu a:hover {
-            background-color: #0056b3;
-        }
-        .content {
-            margin: 20px;
-        }
-        .owner-card, .discussion, .contact {
-            display: none;
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 600px;
-            text-align: left;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .owner-card h2, .discussion h2, .contact h2 {
-            text-align: center;
-            color: #333;
-        }
-        .reaction-btn {
-            background-color: #f39c12;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 10px;
-            border-radius: 5px;
-        }
-        .reaction-btn:hover {
-            background-color: #e67e22;
-        }
-    </style>
+    <title>Trang Đăng Nhập</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Liên kết tới file CSS -->
 </head>
 <body>
-    <div class="header">
-        <h1>Thư Viện Page</h1>
-    </div>
-    <div class="menu">
-        <a href="#" onclick="showSection('owner')">Chủ Sở Hữu Trang Web</a>
-        <a href="#" onclick="showSection('discussion')">Thảo Luận</a>
-        <a href="#" onclick="showSection('contact')">Liên Hệ</a>
-    </div>
-    <div class="content">
-        <!-- Chủ Sở Hữu -->
-        <div id="owner" class="owner-card">
-            <h2>Thông Tin Chủ Sở Hữu</h2>
-            <p><strong>Họ và Tên:</strong> Lê Huy Hoàng</p>
-            <p><strong>Ngày Sinh:</strong> 01/05/2010</p>
-            <div>
-                <button class="reaction-btn" onclick="alert('Cảm ơn! Anh này đẹp trai thật.')">Có</button>
-                <button class="reaction-btn" onclick="alert('Thật không? Hãy suy nghĩ lại nhé!')">Không</button>
+    <div class="login-container">
+        <h2>Đăng Nhập</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <img src="user.png" alt="User Icon"> <!-- Icon cho Tên -->
+                <input type="text" id="name" placeholder="Nhập tên của bạn" required>
             </div>
-        </div>
-
-        <!-- Thảo Luận -->
-        <div id="discussion" class="discussion">
-            <h2>Diễn Đàn Thảo Luận</h2>
-            <textarea id="discussionText" rows="5" placeholder="Đăng bình luận tại đây..." style="width: 100%;"></textarea>
-            <button class="reaction-btn" onclick="postDiscussion()">Đăng</button>
-            <ul id="discussionList" style="text-align: left; list-style-type: none; padding: 0;"></ul>
-        </div>
-
-        <!-- Liên Hệ -->
-        <div id="contact" class="contact">
-            <h2>Liên Hệ</h2>
-            <p><strong>Facebook:</strong> <a href="#" target="_blank">Facebook</a></p>
-            <p><strong>Discord:</strong> <a href="#" target="_blank">Discord</a></p>
-            <p><strong>Github:</strong> <a href="#" target="_blank">Github</a></p>
-            <p><strong>Tiktok:</strong> <a href="#" target="_blank">Tiktok</a></p>
-            <p><strong>Telegram:</strong> <a href="#" onclick="telegramAlert()">Telegram</a></p>
-        </div>
+            <div class="input-group">
+                <img src="padlock.png" alt="Padlock Icon"> <!-- Icon cho Lớp -->
+                <input type="text" id="class" placeholder="Nhập lớp của bạn" required>
+            </div>
+            <button type="submit">Đăng Nhập</button>
+        </form>
+        <div class="error" id="errorMessage"></div>
     </div>
 
     <script>
-        function showSection(section) {
-            const sections = document.querySelectorAll('.owner-card, .discussion, .contact');
-            sections.forEach(sec => sec.style.display = 'none');
+        const validUsers = [
+            "Phạm Bùi Ngọc Hân", "Hà Thị Hiền Trang", "Hoàng Ngọc Đức Mạnh",
+            "Nguyễn Thiện Vỹ", "Tạ Tùng Lâm", "Lê Thị Yến Vy", "Nguyễn Hoàng Nam",
+            "Đặng Huy Hoàng", "Nguyễn Huy Hoàng", "Trịnh Phương Anh", "Phạm Kỳ Anh",
+            "Đỗ Danh Chiến", "Đỗ Hồng Quân", "Doãn Lê Anh Tuấn", "Lê Thị Thùy Dương", "Nguyễn Quốc Việt"
+        ];
 
-            document.getElementById(section).style.display = 'block';
-        }
+        const form = document.getElementById("loginForm");
+        const errorMessage = document.getElementById("errorMessage");
 
-        function postDiscussion() {
-            const text = document.getElementById('discussionText').value.trim();
-            if (text === '') {
-                alert('Hãy nhập bình luận trước khi đăng!');
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Ngừng gửi form mặc định
+
+            const name = document.getElementById("name").value.trim();
+            const className = document.getElementById("class").value.trim();
+
+            // Kiểm tra tên người dùng có hợp lệ không
+            if (!validUsers.includes(name)) {
+                errorMessage.textContent = "Tên người dùng không hợp lệ!";
                 return;
             }
-            const list = document.getElementById('discussionList');
-            const listItem = document.createElement('li');
-            listItem.textContent = text;
-            list.appendChild(listItem);
-            document.getElementById('discussionText').value = '';
-        }
 
-        function telegramAlert() {
-            alert('Rất tiếc tôi không dùng mạng xã hội dành cho sỉu nhi :)))');
-        }
+            // Kiểm tra lớp có đúng không (tất cả đều là lớp 9A)
+            if (className !== "9A") {
+                errorMessage.textContent = "Lớp không hợp lệ!";
+                return;
+            }
+
+            // Nếu đăng nhập hợp lệ, chuyển hướng đến thư viện
+            window.location.href = "library.html";
+        });
     </script>
 </body>
 </html>
