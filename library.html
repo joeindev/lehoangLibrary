@@ -22,7 +22,6 @@
             font-size: 24px;
         }
 
-        /* Breadcrumb Style */
         .breadcrumb {
             display: flex;
             justify-content: flex-start;
@@ -59,7 +58,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Kim đồng hồ */
         .clock .hour, .clock .minute, .clock .second {
             position: absolute;
             background-color: #333;
@@ -127,7 +125,6 @@
         .clock .numbers .num11 { transform: rotate(300deg) translate(140px) rotate(-300deg); }
         .clock .numbers .num12 { transform: rotate(330deg) translate(140px) rotate(-330deg); }
 
-        /* Danh mục */
         .menu {
             margin: 20px 0;
         }
@@ -202,12 +199,10 @@
         <h1>Thư Viện Page</h1>
     </div>
 
-    <!-- Breadcrumb -->
     <div class="breadcrumb">
         <a href="#">Trang Chủ</a> > <a href="#">Thư Viện</a> > <span>Danh Sách Sách</span>
     </div>
 
-    <!-- Đồng hồ -->
     <div class="clock-container">
         <div class="clock">
             <div class="hour"></div>
@@ -231,7 +226,6 @@
         </div>
     </div>
 
-    <!-- Menu -->
     <div class="menu">
         <a href="#" onclick="showSection('owner')">Chủ Sở Hữu Trang Web</a>
         <a href="#" onclick="showSection('discussion')">Thảo Luận</a>
@@ -239,7 +233,6 @@
     </div>
 
     <div class="content">
-        <!-- Chủ Sở Hữu -->
         <div id="owner" class="owner-card">
             <h2>Thông Tin Chủ Sở Hữu</h2>
             <p><strong>Họ và Tên:</strong> Lê Huy Hoàng</p>
@@ -250,7 +243,6 @@
             </div>
         </div>
 
-        <!-- Thảo Luận -->
         <div id="discussion" class="discussion">
             <h2>Diễn Đàn Thảo Luận</h2>
             <textarea id="discussionText" rows="5" placeholder="Đăng bình luận tại đây..." style="width: 100%;"></textarea>
@@ -259,7 +251,6 @@
             <ul id="discussionList" class="discussion-list"></ul>
         </div>
 
-        <!-- Liên Hệ -->
         <div id="contact" class="contact">
             <h2>Liên Hệ</h2>
             <p><strong>Facebook:</strong> <a href="#" target="_blank">Facebook</a></p>
@@ -291,7 +282,7 @@
             const listItem = document.createElement('li');
             const userName = localStorage.getItem("username");
             const status = localStorage.getItem("status");
-            const avatar = 'user-avatar.png'; // Placeholder for user's avatar
+            const avatar = 'user-avatar.png';
 
             listItem.classList.add('discussion-item');
             listItem.innerHTML = `
@@ -321,7 +312,6 @@
             alert('Rất tiếc tôi không dùng mạng xã hội dành cho sỉu nhi :)))');
         }
 
-        // Cập nhật đồng hồ mỗi giây
         function updateClock() {
             const now = new Date();
             const hours = now.getHours();
@@ -338,7 +328,7 @@
         }
 
         setInterval(updateClock, 1000);
-        updateClock(); // Initial update
+        updateClock();
     </script>
 </body>
 </html>
