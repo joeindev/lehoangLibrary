@@ -36,4 +36,4 @@ function createSnowflakes() {
     }
 }
 
-createSnowflakes(); // Tạo tuyết rơi khi tải trang
+createSnowflakes();
