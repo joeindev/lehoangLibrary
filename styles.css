@@ -1,4 +1,3 @@
-/* Cài đặt background toàn trang */
 body {
     margin: 0;
     padding: 0;
@@ -10,10 +9,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Để ngăn chặn cuộn trang khi có hiệu ứng tuyết rơi */
+    overflow: hidden;
 }
 
-/* Phần tử container đăng nhập */
 .login-container {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 40px;
@@ -22,24 +20,21 @@ body {
     max-width: 400px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    position: relative; /* Để các phần tử trên có thể đè lên */
-    z-index: 2; /* Đảm bảo đăng nhập nằm trên tuyết */
+    position: relative; 
+    z-index: 2;
 }
 
-/* Tiêu đề đăng nhập */
 h2 {
     margin-bottom: 30px;
     font-size: 24px;
     color: #333;
 }
 
-/* Nhóm nhập liệu */
 .input-group {
     position: relative;
     margin-bottom: 20px;
 }
 
-/* Icon bên trái input */
 .input-group img {
     position: absolute;
     left: 10px;
@@ -49,7 +44,6 @@ h2 {
     height: 20px;
 }
 
-/* Style cho các trường nhập liệu */
 input[type="text"] {
     width: 100%;
     padding: 10px 30px;
@@ -64,7 +58,6 @@ input[type="text"]:focus {
     border-color: #007bff;
 }
 
-/* Nút đăng nhập */
 button {
     width: 100%;
     padding: 12px;
@@ -81,14 +74,12 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Hiển thị lỗi */
 .error {
     color: red;
     font-size: 14px;
     margin-top: 15px;
 }
 
-/* Điều chỉnh responsive */
 @media (max-width: 480px) {
     .login-container {
         padding: 30px;
