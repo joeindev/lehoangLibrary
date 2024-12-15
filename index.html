@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Đăng Nhập</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Liên kết tới file CSS -->
+    <link rel="stylesheet" href="styles.css"> 
     <style>
-        /* Hiệu ứng tuyết rơi */
         .snow {
             position: absolute;
             top: 0;
@@ -42,11 +41,11 @@
         <h2>Đăng Nhập</h2>
         <form id="loginForm">
             <div class="input-group">
-                <img src="user.png" alt="User Icon"> <!-- Icon cho Tên -->
+                <img src="user.png" alt="User Icon">
                 <input type="text" id="name" placeholder="Nhập tên của bạn" required>
             </div>
             <div class="input-group">
-                <img src="padlock.png" alt="Padlock Icon"> <!-- Icon cho Lớp -->
+                <img src="padlock.png" alt="Padlock Icon">
                 <input type="text" id="class" placeholder="Nhập lớp của bạn" required>
             </div>
             <button type="submit">Đăng Nhập</button>
@@ -66,24 +65,18 @@
         const errorMessage = document.getElementById("errorMessage");
 
         form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Ngừng gửi form mặc định
+            event.preventDefault();
 
             const name = document.getElementById("name").value.trim();
             const className = document.getElementById("class").value.trim();
 
-            // Kiểm tra tên người dùng có hợp lệ không
             if (!validUsers.includes(name)) {
                 errorMessage.textContent = "Tên người dùng không hợp lệ!";
-                return;
-            }
-
-            // Kiểm tra lớp có đúng không (tất cả đều là lớp 9A)
-            if (className !== "9A") {
+   9A") {
                 errorMessage.textContent = "Lớp không hợp lệ!";
                 return;
             }
 
-            // Nếu đăng nhập hợp lệ, chuyển hướng đến thư viện
             window.location.href = "library.html";
         });
     </script>
