@@ -8,20 +8,21 @@ const validUsers = [
 function validateLogin() {
     const username = document.getElementById('username').value.trim();
     const className = document.getElementById('className').value.trim();
+    const errorMessage = document.getElementById('error-message');
 
     if (!username || !className) {
-        document.getElementById('error-message').textContent = "Vui lòng điền đầy đủ thông tin!";
+        errorMessage.textContent = "Vui lòng điền đầy đủ thông tin!";
+        errorMessage.classList.add('show');
         return;
     }
 
     if (validUsers.includes(username) && className === "9A") {
         window.location.href = "library.html";
     } else {
-        document.getElementById('error-message').textContent = "Tên người dùng hoặc lớp không hợp lệ!";
+        errorMessage.textContent = "Tên người dùng hoặc lớp không hợp lệ!";
+        errorMessage.classList.add('show');
     }
 }
-
-document.getElementById('login-button').addEventListener('click', validateLogin);
 
 function createSnowflakes() {
     const snowContainer = document.getElementById('snow');
@@ -36,4 +37,5 @@ function createSnowflakes() {
     }
 }
 
+document.getElementById('login-button').addEventListener('click', validateLogin);
 createSnowflakes();
