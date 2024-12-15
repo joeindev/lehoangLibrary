@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Đăng Nhập</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="styles.css">
     <style>
         .snow {
             position: absolute;
@@ -42,43 +42,17 @@
         <form id="loginForm">
             <div class="input-group">
                 <img src="user.png" alt="User Icon">
-                <input type="text" id="name" placeholder="Nhập tên của bạn" required>
+                <input type="text" id="username" placeholder="Nhập tên của bạn" required>
             </div>
             <div class="input-group">
                 <img src="padlock.png" alt="Padlock Icon">
-                <input type="text" id="class" placeholder="Nhập lớp của bạn" required>
+                <input type="text" id="className" placeholder="Nhập lớp của bạn (VD: 9A)" required>
             </div>
-            <button type="submit">Đăng Nhập</button>
+            <button type="button" id="login-button">Đăng Nhập</button>
         </form>
-        <div class="error" id="errorMessage"></div>
+        <div class="error" id="error-message"></div>
     </div>
 
-    <script>
-        const validUsers = [
-            "Phạm Bùi Ngọc Hân", "Hà Thị Hiền Trang", "Hoàng Ngọc Đức Mạnh",
-            "Nguyễn Thiện Vỹ", "Tạ Tùng Lâm", "Lê Thị Yến Vy", "Nguyễn Hoàng Nam",
-            "Đặng Huy Hoàng", "Nguyễn Huy Hoàng", "Trịnh Phương Anh", "Phạm Kỳ Anh",
-            "Đỗ Danh Chiến", "Đỗ Hồng Quân", "Doãn Lê Anh Tuấn", "Lê Thị Thùy Dương", "Nguyễn Quốc Việt"
-        ];
-
-        const form = document.getElementById("loginForm");
-        const errorMessage = document.getElementById("errorMessage");
-
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const name = document.getElementById("name").value.trim();
-            const className = document.getElementById("class").value.trim();
-
-            if (!validUsers.includes(name)) {
-                errorMessage.textContent = "Tên người dùng không hợp lệ!";
-   9A") {
-                errorMessage.textContent = "Lớp không hợp lệ!";
-                return;
-            }
-
-            window.location.href = "library.html";
-        });
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
