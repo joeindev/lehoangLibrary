@@ -21,7 +21,7 @@ function validateLogin() {
         return;
     }
 
-    if (validUsers.includes(username) && className === "8") {
+    if (validUsers.includes(username) && className === "11A1") {
         window.location.href = "library.html";
     } else {
         errorMessage.textContent = "Tên người dùng hoặc lớp không hợp lệ!";
