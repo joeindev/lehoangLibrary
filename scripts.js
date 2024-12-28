@@ -16,7 +16,7 @@ function validateLogin() {
         return;
     }
 
-    if (validUsers.includes(username) && className === "9A") {
+    if (validUsers.includes(username) && className === "8") {
         window.location.href = "library.html";
 
     } else {
