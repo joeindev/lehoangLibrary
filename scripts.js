@@ -18,14 +18,7 @@ function validateLogin() {
 
     if (validUsers.includes(username) && className === "9A") {
         window.location.href = "library.html";
-    if (validUsers.includes(username) && className === "9B") {
-        window.location.href = "library.html";
-    if (validUsers.includes(username) && className === "8A") {
-        window.location.href = "library.html";
-    if (validUsers.includes(username) && className === "8B") {
-        window.location.href = "library.html";
-    if (validUsers.includes(username) && className === "2011") {
-        window.location.href = "library.html";
+
     } else {
         errorMessage.textContent = "Tên người dùng hoặc lớp không hợp lệ!";
         errorMessage.classList.add('show');
