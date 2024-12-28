@@ -6,9 +6,14 @@ const validUsers = [
 ];
 
 function validateLogin() {
-    const username = document.getElementById('username').value.trim();
-    const className = document.getElementById('className').value.trim();
+    const usernameInput = document.getElementById('username');
+    const classNameInput = document.getElementById('className');
     const errorMessage = document.getElementById('error-message');
+
+    if (!usernameInput || !classNameInput || !errorMessage) return;
+
+    const username = usernameInput.value.trim();
+    const className = classNameInput.value.trim();
 
     if (!username || !className) {
         errorMessage.textContent = "Vui lòng điền đầy đủ thông tin!";
@@ -18,7 +23,6 @@ function validateLogin() {
 
     if (validUsers.includes(username) && className === "8") {
         window.location.href = "library.html";
-
     } else {
         errorMessage.textContent = "Tên người dùng hoặc lớp không hợp lệ!";
         errorMessage.classList.add('show');
@@ -27,7 +31,10 @@ function validateLogin() {
 
 function createSnowflakes() {
     const snowContainer = document.getElementById('snow');
-    for (let i = 0; i < 100; i++) {
+    if (!snowContainer) return;
+
+    const flakeCount = 50;
+    for (let i = 0; i < flakeCount; i++) {
         const flake = document.createElement('div');
         flake.classList.add('flake');
         flake.style.width = `${Math.random() * 5 + 5}px`;
@@ -38,5 +45,5 @@ function createSnowflakes() {
     }
 }
 
-document.getElementById('login-button').addEventListener('click', validateLogin);
+document.getElementById('login-button')?.addEventListener('click', validateLogin);
 createSnowflakes();
